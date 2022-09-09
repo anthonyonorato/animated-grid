@@ -5,17 +5,18 @@ class App extends React.Component {
       total: 1
     };
      
+    handleStagger = (i) => {
+        const { columns, rows } = this.state;
+        const el = i.target.id;
+        anime({
+          targets: ".grid-item",
+          backgroundColor: randomColor(),
+          delay: anime.stagger(50, { grid: [columns, rows], from: el })
+        });
+      };
+    
       getGridSize = () => {
         const columns = Math.floor(document.body.clientWidth / 50);
         const rows = Math.floor(document.body.clientHeight / 50);
     
-        this.setState({ columns, rows, total: rows * columns });
-        anime({
-          targets: ".grid-item",
-          backgroundColor: "#fff",
-          duration: 0,
-          easing: "linear"
-        });
-      };
-
     
